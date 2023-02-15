@@ -6,6 +6,8 @@ dataset: link para download - [HERE](https://www.kaggle.com/datasets/meirnizri/c
 
 - 1 - Fazer estatistica descritiva das variaveis, correlacdo e histograma
   - [x] WIP
+      - Exploring the dataset with notebook. ```@andvsilva 2023-02-15```
+        - ```Shape dataset Full:.........observations/rows: 1048575 and columns: 21```
   - [ ] DONE
 - 2 - Construir as variaveis explicativas
   - [x] WIP
