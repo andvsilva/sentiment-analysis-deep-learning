@@ -1,6 +1,6 @@
 ## Construir um classificador para prever a change de uma pessoa morrer de covid
 
-dataset: link para download - [HERE](https://www.kagele.com/datasets/meirnizri/covid19-\d?datasetVersionNumber=1)
+dataset: link para download - [HERE](https://www.kaggle.com/datasets/meirnizri/covid19-dataset/download?datasetVersionNumber=1)
 
 ### To Do - List
 
