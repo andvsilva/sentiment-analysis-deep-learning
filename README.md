@@ -2,13 +2,19 @@
 
 dataset: link para download - [HERE](https://www.kaggle.com/datasets/meirnizri/covid19-dataset/download?datasetVersionNumber=1)
 
+  - 1 - **Explore Dataset**
+    - Exploring the dataset with notebook.    ```@andvsilva 2023-02-15```
+    - ```Shape dataset Full: observations/rows: 1048575 and columns: 21```
+        - **Feature Engineering(FE)** - Creating the target based on condiction, if we have the date, the patient die and otherwise the '9999-99-99' the patient is alive. ```@andvsilva 2023-02-15```
+        - **Feature Selection** - Next thing to do!
+        - **Feature Importance** - Next thing to do!
+        - **Modeling** - We start to test the models ```MLPClassifier``` and ```CatBoostClassifier``` ```@andvsilva 2023-02-15```
+        - Predictions from the models, respectively: ```0.9478``` and ```0.9521```
+
 ### To Do - List
 
 - 1 - Fazer estatistica descritiva das variaveis, correlacdo e histograma
   - [x] WIP
-      - Exploring the dataset with notebook. ```@andvsilva 2023-02-15```
-        - ```Shape dataset Full: observations/rows: 1048575 and columns: 21```
-        - Feature Engineering(FE) - Creating the target based on condiction, if we have the date, the patient die and otherwise the '9999-99-99' the patient is alive. ```@andvsilva```
   - [ ] DONE
 - 2 - Construir as variaveis explicativas
   - [x] WIP
