@@ -6,10 +6,13 @@ dataset: link para download - [HERE](https://www.kaggle.com/datasets/meirnizri/c
     - Exploring the dataset with notebook.    ```@andvsilva 2023-02-15```
     - ```Shape dataset Full: observations/rows: 1048575 and columns: 21```
         - **Feature Engineering(FE)** - Creating the target based on condiction, if we have the date, the patient die and otherwise the '9999-99-99' the patient is alive. ```@andvsilva 2023-02-15```
-        - **Feature Selection** - Next thing to do!
-        - **Feature Importance** - Next thing to do!
-        - **Modeling** - We start to test the models ```MLPClassifier``` and ```CatBoostClassifier``` ```@andvsilva 2023-02-15```
-        - **Predictions** from the models, respectively: ```0.9478``` and ```0.9521```
+        - **Feature Selection** - Add **SelectKBest(k=20)**
+          - Add Random Oversampling Imbalanced Datasets
+            &rarr;```Alive    92.66% Died      7.34% Name ALIVE_OR_DIED```
+          -  ```RandomOverSampler: Random oversampling involves randomly duplicating examples from the minority class and adding them to the training dataset.``` 
+        - **Feature Importance** - **RandomForestClassifier**(DONE)
+        - **Modeling** - We start to test the models ```RandomForestClassifier``` and ```CatBoostClassifier```(iterations=100, 1000 are ideal (Next thing to do!)) ```@andvsilva 2023-02-19```
+          - **Predictions** from the models, respectively: ```95.18 %``` and ```95.21 %```
 
 ### Pipeline:
 
