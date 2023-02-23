@@ -2,6 +2,8 @@
 
 dataset: link para download - [HERE](https://www.kaggle.com/datasets/meirnizri/covid19-dataset/download?datasetVersionNumber=1)
 
+- About the dataset - [HERE](https://www.kaggle.com/datasets/meirnizri/covid19-dataset)
+
   - **Explore Dataset**
     - Exploring the dataset with notebook.    ```@andvsilva 2023-02-15```
     - ```Shape dataset Full: observations/rows: 1048575 and columns: 21```
