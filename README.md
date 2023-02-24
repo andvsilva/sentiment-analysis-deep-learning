@@ -44,3 +44,7 @@ dataset: link para download - [HERE](https://www.kaggle.com/datasets/meirnizri/c
 - 7 - Refaca os modelos usando PCA
   - [x] WIP
   - [ ] DONE
+
+**What is hierarchical clustering?**
+
+Hierarchical clustering is part of the group of unsupervised learning models known as clustering. This means that we don’t have a defined target variable unlike in traditional regression or classification tasks. The point of this machine learning algorithm, therefore, is to identify distinct clusters of objects that share similar characteristics by using defined distance metrics on the selected variables. Other machine learning algorithms that fit within this family include Kmeans or DBscan.
