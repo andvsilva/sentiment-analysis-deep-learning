@@ -8,6 +8,8 @@ The CRoss Industry Standard Process for Data Mining (CRISP-DM) is a process mode
 
 ![](../images/CRISP.png)
 
+
+
 Inspired by [Wikipedia](https://en.wikipedia.org/wiki/Cross-industry_standard_process_for_data_mining)
 
 - Business understanding – What does the business need?
