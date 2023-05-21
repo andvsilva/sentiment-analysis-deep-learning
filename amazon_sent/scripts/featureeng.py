@@ -21,6 +21,25 @@ import toolkit as tool
 from icecream import ic
 from sys import getsizeof
 import time
+import requests as re
+import re # for regex
+import nltk
+nltk.download('wordnet')
+nltk.download('stopwords')
+nltk.download('punkt')
+#nltk.download('all')
+from nltk.corpus import stopwords
+from nltk.stem import SnowballStemmer
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB,MultinomialNB,BernoulliNB
+from sklearn.metrics import accuracy_score
+import pickle
+from transformers import BertTokenizer, BertForSequenceClassification
+import string
+from collections import Counter
 
 # Get start time 
 start_time = time.time()
@@ -30,6 +49,14 @@ now = datetime.now()
 print("date..............:", now)
 
 # Here we are going to implement some functions
+# redefine score
+def sentiment(label):
+    if label == 5.0 or label == 4.0:
+        return "0"
+    #elif label == 3.0:
+    #    return "Neutral"
+    elif label == 1.0 or label == 2.0:
+        return "1"
 
 print('*****************************************************')
 print('Starting the feature engineering of the dataset.')
@@ -39,7 +66,60 @@ print('*****************************************************')
 print("Loading dataset - cleaned to feature engineering...")
 
 df_featuresel = pd.read_feather('data-feather/cleaned.ftr')
-print(df_featuresel)
+
+# retirar os neutros.
+df_featuresel = df_featuresel[df_featuresel['Score'] != 3]
+    
+df_featuresel['negative'] = df_featuresel["Score"].apply(sentiment)
+
+# Counting reviews by stars
+ax = df_featuresel['Score'].value_counts().sort_index().plot(kind='bar',
+                                                  title='Contagem de Reviews por estrelas',
+                                                  figsize=(10, 5)
+                                                 )
+
+ax.set_xlabel('Review Stars')
+ax.set_ylabel('Contagem')
+plt.savefig('pngs/counting_reviews_stars.png')
+#plt.show()
+
+#Mude df5 para df3 para pegar toda base
+texts = df_featuresel['Text'].sum()
+texts[0:1000]
+
+stop_pt = nltk.corpus.stopwords.words('portuguese')
+stop_en = nltk.corpus.stopwords.words('english')
+stopwords_pa = stop_en + stop_pt
+stopwords_pa.extend(['-',''])
+
+list_words = texts.split()
+list_words = [l.strip().lower() for l in list_words]
+
+# lista de palavras do Text 'reviews'
+list_words = [l.strip(string.punctuation) for l in list_words]
+list_words = [l for l in list_words if l not in stopwords_pa]
+freqdist = Counter(list_words)
+#print(dict(freqdist.most_common(10)))
+
+print('Word clouds...Sentiment Analysis: Amazon ')
+
+from wordcloud import WordCloud
+cleaned = ' '.join(list_words)
+wordcloud = WordCloud().generate(cleaned)
+
+fig, ax = plt.subplots(figsize=(10, 10))
+ax.imshow(wordcloud, interpolation='nearest')
+plt.grid(False)
+plt.tight_layout()
+plt.savefig('pngs/word_clouds.png')
+
+# converter string para inteiro
+df_featuresel['negative'] = pd.to_numeric(df_featuresel['negative'])
+#print(df_featuresel.info())
+
+# >>> feature select
+df_featuresel = df_featuresel[['Text', 'negative']]
+print(df_featuresel.info())
 
 print("saving the file format feather...")
 

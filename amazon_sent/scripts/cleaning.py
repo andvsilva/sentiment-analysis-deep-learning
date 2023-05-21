@@ -37,10 +37,6 @@ import pickle
 from transformers import BertTokenizer, BertForSequenceClassification
 import string
 from collections import Counter
-nltk.download('wordnet')
-nltk.download('stopwords')
-nltk.download('punkt')
-#nltk.download('all')
 
 # Get start time 
 start_time = time.time()
@@ -69,12 +65,13 @@ df_reviews = tool.reduce_mem_usage(df_reviews)
 ################################################ FIXME - remove
 ######## parte do dataset
 df_reviews_copy = df_reviews.copy()
-df_reviews_sample = df_reviews_copy.sample(50) # FIXME remover no final
+df_reviews_sample = df_reviews_copy.sample(1000) # FIXME remover no final
 
 # release memory RAM - dataframe
 tool.release_memory(df_reviews_copy)
 tool.release_memory(df_reviews)
-df_reviews = df_reviews_sample[['Score', 'Text']] # select o
+#df_reviews = df_reviews_sample[['Score', 'Text']] 
+df_reviews = df_reviews_sample
 tool.release_memory(df_reviews_sample)
 ############################################
 
