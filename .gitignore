@@ -1,3 +1,5 @@
 Reviews.csv
 out.csv
 *.ftr
+*.h5
+*.pkl
