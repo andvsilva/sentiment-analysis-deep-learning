@@ -65,7 +65,7 @@ df_reviews = tool.reduce_mem_usage(df_reviews)
 ################################################ FIXME - remove
 ######## parte do dataset
 df_reviews_copy = df_reviews.copy()
-df_reviews_sample = df_reviews_copy.sample(10000) # FIXME remover no final
+df_reviews_sample = df_reviews_copy.sample(28000) # FIXME remover no final
 
 # release memory RAM - dataframe
 tool.release_memory(df_reviews_copy)

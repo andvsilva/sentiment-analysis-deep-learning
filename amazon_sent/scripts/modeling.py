@@ -36,6 +36,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.metrics import r2_score
 from matplotlib import pyplot
 import seaborn as sns
+import pickle
 
 from sklearn.model_selection import cross_val_score
 from sklearn.ensemble import RandomForestRegressor
@@ -61,13 +62,11 @@ from imblearn.over_sampling import SMOTE
 from sklearn.naive_bayes import GaussianNB
 from sklearn.naive_bayes import BernoulliNB
 import tensorflow as tf
-from tensorflow.keras.datasets import imdb
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Embedding, LSTM
-from tensorflow.keras.preprocessing import sequence
 from tensorflow import keras
 from tensorflow.keras import layers
-from tensorflow.keras.callbacks import EarlyStopping
+
+# serialize model to JSON
+from keras.models import model_from_json
 
 # Get start time 
 start_time = time.time()
@@ -93,18 +92,21 @@ y = df_processed['negative']
 # release memory RAM
 tool.release_memory(df_processed)
 
+print('transform to array...')
 cv = CountVectorizer()
 X = cv.fit_transform(X).toarray()
 
 smote = SMOTE()
 
-# inbalance data to balance
+print('imbalance data to balance...')
+
 X, y = smote.fit_resample(X, y)
 
 print("X.shape = ",X.shape)
 print("y.shape = ",y.shape)
 
 print('splitting the dataset in train and validation...')
+
 x_train, x_validation, y_train, y_validation = train_test_split(X, y, test_size=0.2, random_state=0)
 
 # release memory - array
@@ -188,6 +190,19 @@ plt.legend(loc="lower right")
 plt.savefig('ROC_curves')
 plt.savefig('pngs/model_ROC_curves.png')
 #plt.show()
+
+# serialize model to JSON
+model_json = model.to_json()
+
+with open("modelkeras.json", "w") as json_file:
+    json_file.write(model_json)
+
+with open('cv.pkl','wb') as f:
+    pickle.dump(cv,f)
+
+# serialize weights to HDF5
+model.save_weights("modelkeras.h5")
+print("Saved model to disk")       
 
 # time of execution in minutes
 time_exec_min = round( (time.time() - start_time)/60, 4)

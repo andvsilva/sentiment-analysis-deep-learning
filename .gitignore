@@ -3,3 +3,4 @@ out.csv
 *.ftr
 *.h5
 *.pkl
+*.json

@@ -41,10 +41,10 @@ def main():
     os.system('python3 cleaning.py') # > logs/info-preprocess.dat
     
     # step 2
-    #os.system('python3 featureset.py') # > logs/feature-eng.dat
+    os.system('python3 featuresel.py') # > logs/feature-eng.dat
     
     # step 3
-    #os.system('python3 modeling.py') # > logs/training.dat
+    os.system('python3 modeling.py') # > logs/training.dat
 
     time_exec_min = round( (time.time() - start_time)/60, 4)
     
