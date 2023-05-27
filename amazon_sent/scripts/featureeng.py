@@ -40,6 +40,8 @@ import pickle
 from transformers import BertTokenizer, BertForSequenceClassification
 import string
 from collections import Counter
+from sklearn.feature_extraction.text import CountVectorizer
+from imblearn.over_sampling import SMOTE
 
 # Get start time 
 start_time = time.time()
@@ -115,11 +117,52 @@ plt.savefig('pngs/word_clouds.png')
 
 # converter string para inteiro
 df_featuresel['negative'] = pd.to_numeric(df_featuresel['negative'])
-#print(df_featuresel.info())
 
 # >>> feature select
 df_featuresel = df_featuresel[['Text', 'negative']]
-print(df_featuresel.info())
+
+# Define batch size
+batch_size = 100
+
+# Split the DataFrame into batches
+batches = np.array_split(df_featuresel, len(df_featuresel) // batch_size)
+
+i=0
+# Loop over the batches
+for batch in batches:
+    print(f'>>> #{i} Batching...')
+    
+    # feature and target
+    X = batch['Text']
+    y = batch['negative']
+    
+    # release memory RAM
+    tool.release_memory(batch)
+    
+    print('Transform X(text) to array, please...')
+    
+    cv = CountVectorizer()
+    X = cv.fit_transform(X).toarray()
+    #print(X)
+    print("Now X is one array, go ahead.")
+    
+    smote = SMOTE()
+
+    print('imbalance data to balance...')
+    
+    X, y = smote.fit_resample(X, y)
+    
+    print("X.shape = ",X.shape)
+    print("y.shape = ",y.shape)
+    
+    print('done, dataset balance. thanks!')
+    
+    # release memory - array
+    tool.release_array(X)
+    tool.release_array(y)
+    
+    #print(batch.head())
+    i+=1
 
 print("saving the file format feather...")
 
