@@ -1,0 +1,8 @@
+icecream
+ipython
+matplotlib
+numpy
+pandas
+seaborn
+snoop
+tqdm
