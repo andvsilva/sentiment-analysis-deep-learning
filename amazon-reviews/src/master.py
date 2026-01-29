@@ -35,13 +35,13 @@ def main():
         print('Successfully, go ahead to run the script.')
         
     # step 0    
-    #os.system('pip3 install -r requirements.txt')
+    os.system('uv pip3 install -r requirements.txt')
 
     # step 1
     #os.system('python3 cleaning.py') # > logs/info-preprocess.dat
     
     # step 2
-    os.system('python3 featureeng.py') # > logs/feature-eng.dat
+    #os.system('python3 featureeng.py') # > logs/feature-eng.dat
     
     # step 3
     #os.system('python3 modeling.py') # > logs/training.dat
