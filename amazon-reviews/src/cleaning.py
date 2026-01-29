@@ -54,7 +54,7 @@ print("date..............:", now)
 #### https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews
 
 # loading the dataset
-df_reviews = pd.read_feather('data-feather/Reviews.ftr') # full dataset
+df_reviews = pd.read_feather('../dataset/feather/Reviews.ftr') # full dataset
 
 # dataset shape
 print(f"Shape dataset Full:.........observations/rows: {df_reviews.shape[0]} and columns: {df_reviews.shape[1]}")
@@ -166,7 +166,7 @@ print("saving the file format feather...")
 df_reviews = df_reviews.reset_index(drop=True)
 
 # saving in the feather format
-df_reviews.to_feather('data-feather/cleaned.ftr')
+df_reviews.to_feather('../dataset/feather/cleaned.ftr')
 
 # time of execution in minutes
 time_exec_min = round( (time.time() - start_time)/60, 4)
